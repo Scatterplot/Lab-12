@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20110426072324) do
 
-  create_table "active_admin_comments", force: true do |t|
+  create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
     t.text     "body"
     t.string   "resource_id",   null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20110426072324) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
-  create_table "admin_users", force: true do |t|
+  create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20110426072324) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-  create_table "line_items", force: true do |t|
+  create_table "line_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
     t.decimal  "price"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20110426072324) do
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id"
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id"
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "checked_out_at"
     t.decimal  "total_price",    precision: 8, scale: 2, default: 0.0
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20110426072324) do
   add_index "orders", ["checked_out_at"], name: "index_orders_on_checked_out_at"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
-  create_table "products", force: true do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "author"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20110426072324) do
   add_index "products", ["available_on"], name: "index_products_on_available_on"
   add_index "products", ["featured"], name: "index_products_on_featured"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
     t.string   "password_hash"
